@@ -12,7 +12,19 @@
             <button class="raise" @click="$router.push('/')">
               Головна стрінка
             </button>
-            <button class="raise" @click="$router.push('/feed')">
+
+            <button
+              @click="$router.push('/add')"
+              class="raise"
+              v-if="this.$store.state.isLoggedIn"
+            >
+              Додавання водіїв
+            </button>
+            <button
+              @click="$router.push('/tutorials')"
+              class="raise"
+              v-if="this.$store.state.isLoggedIn"
+            >
               Оцінювання водіїв
             </button>
             <button

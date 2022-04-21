@@ -28,8 +28,14 @@ const routes = [
     component: () => import("../views/SignIn.vue"),
   },
   {
-    path: "/feed",
-    component: () => import("../views/Feed.vue"),
+    path: "/tutorials",
+    name: "tutorials",
+    component: () => import("../views/TutorialsList.vue")
+  },
+  {
+    path: "/add",
+    name: "add",
+    component: () => import("../views/AddTutorial.vue")
   }
 ];
 
