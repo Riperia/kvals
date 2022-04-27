@@ -9,7 +9,7 @@
       <div class="right flex">
         <div @click="toggleFilterMenu" class="filter flex">
           <span
-            >Filter by status
+            >Фільтр
             <span v-if="filteredInvoice">: {{ filteredInvoice }}</span></span
           >
           <img src="@/assets/icon-arrow-down.svg" alt="" />
@@ -24,7 +24,7 @@
           <div class="inner-button flex">
             <img src="@/assets/icon-plus.svg" alt="" />
           </div>
-          <span>New Invoice</span>
+          <span>Створити маршрут</span>
         </div>
       </div>
     </div>
@@ -38,10 +38,8 @@
     </div>
     <div v-else class="empty flex flex-column">
       <img src="@/assets/illustration-empty.svg" alt="" />
-      <h3>There is nothing here</h3>
-      <p>
-        Create a new invoice by clicking the New Invoice button and get started
-      </p>
+      <h3>Пусто</h3>
+      <p>Створіть новий Маршрут натиснувши на "Створити Маршрут"</p>
     </div>
   </div>
 </template>

@@ -1,15 +1,22 @@
 <template>
-  <router-link class="invoice flex" :to="{ name: 'Invoice', params: { invoiceId: invoice.invoiceId } }">
+  <router-link
+    class="invoice flex"
+    :to="{ name: 'Invoice', params: { invoiceId: invoice.invoiceId } }"
+  >
     <div class="left flex">
       <span class="tracking-number">#{{ invoice.invoiceId }}</span>
-      <span class="due-date">{{ invoice.paymentDueDate }}</span>
       <span class="person">{{ invoice.clientName }}</span>
+      <span class="due-date">{{ invoice.paymentDueDate }}</span>
     </div>
     <div class="right flex">
       <span class="price">${{ invoice.invoiceTotal }}</span>
       <div
         class="status-button flex"
-        :class="{ paid: invoice.invoicePaid, draft: invoice.invoiceDraft, pending: invoice.invoicePending }"
+        :class="{
+          paid: invoice.invoicePaid,
+          draft: invoice.invoiceDraft,
+          pending: invoice.invoicePending,
+        }"
       >
         <span v-if="invoice.invoicePaid">Прибув</span>
         <span v-if="invoice.invoiceDraft">Чорновик</span>
@@ -40,7 +47,9 @@ export default {
   padding: 28px 32px;
   background-color: #1e2139;
   align-items: center;
-
+  &:hover {
+    background-color: #242740;
+  }
   span {
     font-size: 13px;
   }

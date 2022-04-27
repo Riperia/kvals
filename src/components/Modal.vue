@@ -1,10 +1,10 @@
 <template>
   <div class="modal flex">
     <div class="modal-content">
-      <p>Are you sure you want to exit? Your changes will not be saved?</p>
+      <p>Ви впевнені шо хочете вийти? Ваші данні не збережуться</p>
       <div class="actions flex">
-        <button @click="closeModal" class="purple">Return</button>
-        <button @click="closeInvoice" class="red">Close</button>
+        <button @click="closeModal" class="purple">Повернутися</button>
+        <button @click="closeInvoice" class="red">Вийти</button>
       </div>
     </div>
   </div>

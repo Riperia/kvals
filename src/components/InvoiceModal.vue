@@ -1,5 +1,9 @@
 <template>
-  <div @click="checkClick" ref="invoiceWrap" class="invoice-wrap flex flex-column">
+  <div
+    @click="checkClick"
+    ref="invoiceWrap"
+    class="invoice-wrap flex flex-column"
+  >
     <form @submit.prevent="submitForm" class="invoice-content">
       <Loading v-show="loading" />
       <h1 v-if="!editInvoice">New Invoice</h1>
@@ -10,7 +14,12 @@
         <h4>Додавання заказу</h4>
         <div class="input flex flex-column">
           <label for="billerStreetAddress">Назва Машини</label>
-          <input required type="text" id="billerStreetAddress" v-model="billerStreetAddress" />
+          <input
+            required
+            type="text"
+            id="billerStreetAddress"
+            v-model="billerStreetAddress"
+          />
         </div>
         <div class="location-details flex">
           <div class="input flex flex-column">
@@ -19,11 +28,21 @@
           </div>
           <div class="input flex flex-column">
             <label for="billerZipCode">кб м</label>
-            <input required type="text" id="billerZipCode" v-model="billerZipCode" />
+            <input
+              required
+              type="text"
+              id="billerZipCode"
+              v-model="billerZipCode"
+            />
           </div>
           <div class="input flex flex-column">
             <label for="billerCountry">Розхід на 100 км</label>
-            <input required type="text" id="billerCountry" v-model="billerCountry" />
+            <input
+              required
+              type="text"
+              id="billerCountry"
+              v-model="billerCountry"
+            />
           </div>
         </div>
       </div>
@@ -41,20 +60,35 @@
         </div>
         <div class="input flex flex-column">
           <label for="clientStreetAddress">Мобільний номер замовника</label>
-          <input required type="text" id="clientStreetAddress" v-model="clientStreetAddress" />
+          <input
+            required
+            type="text"
+            id="clientStreetAddress"
+            v-model="clientStreetAddress"
+          />
         </div>
         <div class="location-details flex">
           <div class="input flex flex-column">
-            <label for="clientCity">Місто де проживає</label>
+            <label for="clientCity">Вулиця де проживає</label>
             <input required type="text" id="clientCity" v-model="clientCity" />
           </div>
           <div class="input flex flex-column">
             <label for="clientZipCode">Поштовий індекс</label>
-            <input required type="text" id="clientZipCode" v-model="clientZipCode" />
+            <input
+              required
+              type="text"
+              id="clientZipCode"
+              v-model="clientZipCode"
+            />
           </div>
           <div class="input flex flex-column">
-            <label for="clientCountry">Область</label>
-            <input required type="text" id="clientCountry" v-model="clientCountry" />
+            <label for="clientCountry">Місто</label>
+            <input
+              required
+              type="text"
+              id="clientCountry"
+              v-model="clientCountry"
+            />
           </div>
         </div>
       </div>
@@ -64,11 +98,21 @@
         <div class="payment flex">
           <div class="input flex flex-column">
             <label for="invoiceDate">Дата виїзду</label>
-            <input disabled type="text" id="invoiceDate" v-model="invoiceDate" />
+            <input
+              disabled
+              type="text"
+              id="invoiceDate"
+              v-model="invoiceDate"
+            />
           </div>
           <div class="input flex flex-column">
             <label for="paymentDueDate">Орієнтовна дата прибуття</label>
-            <input disabled type="text" id="paymentDueDate" v-model="paymentDueDate" />
+            <input
+              disabled
+              type="text"
+              id="paymentDueDate"
+              v-model="paymentDueDate"
+            />
           </div>
         </div>
         <div class="input flex flex-column">
@@ -88,7 +132,12 @@
         </div>
         <div class="input flex flex-column">
           <label for="productDescription">Коментар</label>
-          <input required type="text" id="productDescription" v-model="productDescription" />
+          <input
+            required
+            type="text"
+            id="productDescription"
+            v-model="productDescription"
+          />
         </div>
         <div class="work-items">
           <h3>Вміст вантажу</h3>
@@ -99,12 +148,24 @@
               <th class="price">Ціна</th>
               <th class="total">Загальна ціна</th>
             </tr>
-            <tr class="table-items flex" v-for="(item, index) in invoiceItemList" :key="index">
-              <td class="item-name"><input type="text" v-model="item.itemName" /></td>
+            <tr
+              class="table-items flex"
+              v-for="(item, index) in invoiceItemList"
+              :key="index"
+            >
+              <td class="item-name">
+                <input type="text" v-model="item.itemName" />
+              </td>
               <td class="qty"><input type="text" v-model="item.qty" /></td>
               <td class="price"><input type="text" v-model="item.price" /></td>
-              <td class="total flex">${{ (item.total = item.qty * item.price) }}</td>
-              <img @click="deleteInvoiceItem(item.id)" src="@/assets/icon-delete.svg" alt="" />
+              <td class="total flex">
+                ${{ (item.total = item.qty * item.price) }}
+              </td>
+              <img
+                @click="deleteInvoiceItem(item.id)"
+                src="@/assets/icon-delete.svg"
+                alt=""
+              />
             </tr>
           </table>
 
@@ -118,12 +179,30 @@
       <!-- Save/Exit -->
       <div class="save flex">
         <div class="left">
-          <button type="button" @click="closeInvoice" class="red">Відмінити</button>
+          <button type="button" @click="closeInvoice" class="red">
+            Відмінити
+          </button>
         </div>
         <div class="right flex">
-          <button v-if="!editInvoice" type="submit" @click="saveDraft" class="dark-purple">Зберегти як чорновик</button>
-          <button v-if="!editInvoice" type="submit" @click="publishInvoice" class="purple">Додати до списку перевезень</button>
-          <button v-if="editInvoice" type="sumbit" class="purple">Обновити інформацію</button>
+          <button
+            v-if="!editInvoice"
+            type="submit"
+            @click="saveDraft"
+            class="dark-purple"
+          >
+            Зберегти як чорновик
+          </button>
+          <button
+            v-if="!editInvoice"
+            type="submit"
+            @click="publishInvoice"
+            class="purple"
+          >
+            Додати до списку перевезень
+          </button>
+          <button v-if="editInvoice" type="sumbit" class="purple">
+            Обновити інформацію
+          </button>
         </div>
       </div>
     </form>
@@ -171,7 +250,10 @@ export default {
     // get current date for invoice date field
     if (!this.editInvoice) {
       this.invoiceDateUnix = Date.now();
-      this.invoiceDate = new Date(this.invoiceDateUnix).toLocaleDateString("uk-UA", this.dateOptions);
+      this.invoiceDate = new Date(this.invoiceDateUnix).toLocaleDateString(
+        "uk-UA",
+        this.dateOptions
+      );
     }
 
     if (this.editInvoice) {
@@ -228,7 +310,9 @@ export default {
     },
 
     deleteInvoiceItem(id) {
-      this.invoiceItemList = this.invoiceItemList.filter((item) => item.id !== id);
+      this.invoiceItemList = this.invoiceItemList.filter(
+        (item) => item.id !== id
+      );
     },
 
     calInvoiceTotal() {
@@ -345,8 +429,12 @@ export default {
   watch: {
     paymentTerms() {
       const futureDate = new Date();
-      this.paymentDueDateUnix = futureDate.setDate(futureDate.getDate() + parseInt(this.paymentTerms));
-      this.paymentDueDate = new Date(this.paymentDueDateUnix).toLocaleDateString("uk-UA", this.dateOptions);
+      this.paymentDueDateUnix = futureDate.setDate(
+        futureDate.getDate() + parseInt(this.paymentTerms)
+      );
+      this.paymentDueDate = new Date(
+        this.paymentDueDateUnix
+      ).toLocaleDateString("uk-UA", this.dateOptions);
     },
   },
 };
@@ -374,7 +462,8 @@ export default {
     width: 100%;
     background-color: #141625;
     color: #fff;
-    box-shadow: 10px 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: 10px 4px 6px -1px rgba(0, 0, 0, 0.2),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
     h1 {
       margin-bottom: 48px;

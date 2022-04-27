@@ -10,6 +10,7 @@ export default createStore({
     currentInvoiceArray: null,
     editInvoice: null,
     isLoggedIn: null,
+    category: [],
 
   },
   mutations: {

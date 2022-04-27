@@ -18,7 +18,7 @@
               class="raise"
               v-if="this.$store.state.isLoggedIn"
             >
-              Додавання водіїв
+              Додати водія
             </button>
             <button
               @click="$router.push('/tutorials')"

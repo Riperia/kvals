@@ -1,61 +1,33 @@
 <template>
   <div v-if="currentTutorial" class="edit-form">
-    <h4>Tutorial</h4>
+    <h4 class="tuto">Tutorial</h4>
     <form>
       <div class="form-group">
-        <label for="title">Title</label>
+        <label for="title" style="color: white">Title</label>
         <input
+          class="editstil"
           type="text"
-          class="form-control"
           id="title"
           v-model="currentTutorial.title"
         />
       </div>
 
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="description" style="color: white">Description</label>
         <input
           type="text"
-          class="form-control"
+          class="editstil"
           id="description"
           v-model="currentTutorial.description"
         />
       </div>
-
-      <div class="form-group">
-        <label><strong>Status:</strong></label>
-        {{ currentTutorial.published ? "Published" : "Pending" }}
-      </div>
     </form>
 
-    <button
-      class="badge badge-primary mr-2"
-      v-if="currentTutorial.published"
-      @click="updatePublished(false)"
-    >
-      UnPublish
-    </button>
-    <button
-      v-else
-      class="badge badge-primary mr-2"
-      @click="updatePublished(true)"
-    >
-      Publish
-    </button>
+    <button class="raise" @click="deleteTutorial">Видалити</button>
 
-    <button class="badge badge-danger mr-2" @click="deleteTutorial">
-      Delete
+    <button type="submit" class="raise" @click="updateTutorial">
+      Обновити
     </button>
-
-    <button type="submit" class="badge badge-success" @click="updateTutorial">
-      Update
-    </button>
-    <p>{{ message }}</p>
-  </div>
-
-  <div v-else>
-    <br />
-    <p>Please click on a Tutorial...</p>
   </div>
 </template>
 
@@ -72,7 +44,7 @@ export default {
     };
   },
   watch: {
-    tutorial: function(tutorial) {
+    tutorial: function (tutorial) {
       this.currentTutorial = { ...tutorial };
       this.message = "";
     },
@@ -118,14 +90,29 @@ export default {
   },
   mounted() {
     this.message = "";
-    this.currentTutorial = { ...this.tutorial }
+    this.currentTutorial = { ...this.tutorial };
   },
 };
 </script>
 
 <style>
+.tuto {
+  color: white;
+  margin-left: 38%;
+}
 .edit-form {
   max-width: 300px;
   margin: auto;
+}
+.editstil {
+  width: 80%;
+  background-color: #1e2139;
+  color: #fff;
+  border-radius: 4px;
+  padding: 12px 4px;
+  border: none;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 4%;
 }
 </style>
